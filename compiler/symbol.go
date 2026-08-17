@@ -335,11 +335,16 @@ func (c *compilerContext) getFunctionInfo(f *ssa.Function) functionInfo {
 	}
 
 	// Check for a few runtime functions that are treated specially.
-	if info.linkName == "runtime.wasmEntryReactor" && c.BuildMode == "c-shared" {
-		info.linkName = "_initialize"
-		info.wasmName = "_initialize"
-		info.exported = true
-	}
+
+	/*
+	   // Commented as it conflicts with gear wasm parser
+
+	   if info.linkName == "runtime.wasmEntryReactor" && c.BuildMode == "c-shared" {
+	   	info.linkName = "_initialize"
+	   	info.wasmName = "_initialize"
+	   	info.exported = true
+	   }
+	*/
 	if info.linkName == "runtime.wasmEntryCommand" && c.BuildMode == "default" {
 		info.linkName = "_start"
 		info.wasmName = "_start"

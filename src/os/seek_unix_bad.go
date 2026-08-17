@@ -4,6 +4,7 @@ package os
 
 import (
 	"syscall"
+	_ "unsafe"
 )
 
 // On linux, we use upstream's syscall package.
@@ -16,7 +17,7 @@ import (
 // Remove once we support Go Assembly.
 // TODO: make this a non-stub, and thus fix the whole problem?
 
-//export syscall.seek
+//go:linkname seek syscall.seek
 func seek(fd int, offset int64, whence int) (newoffset int64, err syscall.Errno) {
 	return 0, syscall.ENOTSUP
 }

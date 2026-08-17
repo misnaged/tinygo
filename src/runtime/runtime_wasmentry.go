@@ -65,10 +65,11 @@ func wasmEntryLegacy() {
 var initializeCalled bool
 
 func wasmExportCheckRun() {
-	switch {
-	case !initializeCalled:
-		runtimePanic("//go:wasmexport function called before runtime initialization")
-	case mainExited:
+	if !initializeCalled {
+		wasmEntryReactor()
+	}
+
+	if mainExited {
 		runtimePanic("//go:wasmexport function called after main.main returned")
 	}
 }
