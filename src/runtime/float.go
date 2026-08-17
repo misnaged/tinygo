@@ -56,6 +56,9 @@ func float64frombits(b uint64) float64 {
 // The fmimimum/fmaximum are missing from most libm implementations.
 // Just define them ourselves.
 
+/*
+
+	Commenting these funcs for Gear wasm parser
 //export fminimum
 func fminimum(x, y float64) float64 {
 	return minimumFloat64(x, y)
@@ -75,6 +78,7 @@ func fmaximum(x, y float64) float64 {
 func fmaximumf(x, y float32) float32 {
 	return maximumFloat32(x, y)
 }
+*/
 
 // Create separate copies of the function that are not exported.
 // This is necessary so that LLVM does not recognize them as builtins.
